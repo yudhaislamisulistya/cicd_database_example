@@ -1,0 +1,50 @@
+name: Database CI/CD (MySQL Dev to Prod)
+
+on:
+  push:
+    branches:
+      - main # Workflow akan dipicu ketika ada perubahan pada branch main
+  workflow_dispatch: # Memungkinkan untuk menjalankan secara manual jika dibutuhkan
+
+jobs:
+  db_cicd:
+    name: Export Dev DB and Import to Prod
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Connect to Server and Run CI/CD
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            echo "🧪 Menjalankan docker compose..."
+            cd /home/yis  # Pindah ke direktori /home/yis
+            docker compose up -d  # Jalankan docker compose tanpa opsi -f
+
+            # -------------------- CI (Continuous Integration) --------------------
+            echo "⏳ Menunggu MySQL Dev siap..."
+            sleep 30  # Menunggu MySQL siap, sesuaikan durasi sesuai kecepatan container Anda
+
+            echo "🧪 Mengecek koneksi ke mysql_devel..."
+            # CI: Memeriksa koneksi dan memastikan database di lingkungan pengembangan siap
+            docker exec mysql_devel_container mysql -uroot -pTelkom123! -e "SHOW DATABASES;"
+
+            # -------------------- CD (Continuous Deployment) --------------------
+            echo "📦 Dump database dari mysql_devel..."
+            # CD: Dump database dari mysql_devel untuk dipindahkan ke produksi
+            docker exec mysql_devel_container sh -c "mysqldump -uroot -pTelkom123! academics_devel" > dump.sql
+
+            echo "🚛 Copy dump ke mysql_prod..."
+            # CD: Menyalin dump database ke container produksi
+            docker cp dump.sql mysql_prod_container:/tmp/dump.sql
+
+            echo "💾 Import ke mysql_prod..."
+            # CD: Mengimpor dump database ke container produksi
+            docker exec mysql_prod_container sh -c "mysql -uroot -pTelkom123! academics < /tmp/dump.sql"
+
+            echo "✅ CI/CD Database selesai"
