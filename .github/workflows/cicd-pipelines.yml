@@ -20,4 +20,12 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }} # Password SSH
           script: |
             echo "Berhasil Konek ke Server"
+            
+            cd /home/yis
+            echo "Berhasil Masuk ke Folder YIS"
+
+            docker compose up -d # Menjalankan docker compose di server
+            echo "Berhasil Menjalankan Docker Compose"
+
+            
           
