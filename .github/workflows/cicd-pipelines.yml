@@ -32,3 +32,15 @@ jobs:
             sleep 30
 
             docker exec mysql_devel_container mysql -u root -pTelkom123! -e "SHOW DATABASES;" # Mengecek apakah database sudah siap
+
+            # CD (Continuous Deployment) untuk Database
+            echo "DUMP Datbase dari mysql_devel..."
+            docker exec mysql_devel_container sh -c "mysqldump -u root -pTelkom123! academics_devel > dump.sql"
+
+            echo "Copy dump ke msqyl_prod..."
+            docker cp dump.sql mysql_prod_container:/tmp/dump.sql
+
+            echo "Import dump ke mysql_prod..."
+            docker exec mysql_prod_container sh -c "mysql -u root -pTelkom123! academics < /tmp/dump.sql"
+
+            echo "Berhasil Import Database ke mysql_prod"
