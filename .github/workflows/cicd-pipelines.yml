@@ -26,6 +26,3 @@ jobs:
 
             docker compose up -d # Menjalankan docker compose di server
             echo "Berhasil Menjalankan Docker Compose"
-
-            
-          
