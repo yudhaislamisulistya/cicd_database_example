@@ -26,3 +26,9 @@ jobs:
 
             docker compose up -d # Menjalankan docker compose di server
             echo "Berhasil Menjalankan Docker Compose"
+
+            # CI (Continuous Integration) untuk Database
+            echo "Menunggu Server MySQL Siap"
+            sleep 30
+
+            docker exec mysql_devel_container mysql -u root -pTelkom123! -e "SHOW DATABASES;" # Mengecek apakah database sudah siap
