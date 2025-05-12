@@ -37,6 +37,9 @@ jobs:
             sudo apt-get update -y
             sudo apt-get install -y maven
 
+            echo "📂 Pindah ke direktori sample-ci-testing"
+            cd /home/yis/sample-ci-testing
+
             echo "🧪 Menjalankan Maven test..."
             mvn clean test
 
