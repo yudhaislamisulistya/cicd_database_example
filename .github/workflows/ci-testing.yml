@@ -20,3 +20,27 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }} # Password SSH
           script: |
             echo "Berhasil Konek ke Server"
+            echo "Masuk dulu ke Folder YIS"
+            cd /home/yis
+            echo "Berhasil Masuk ke Folder YIS"
+
+            echo "Mengecek apakah ini adalah git repository"
+            if [ -d ".git" ]; then
+              echo "Ada git repository"
+              git pull origin main # Update repository ke branch main
+            else
+              echo "Gak ada git repository"
+              git clone https://github.com/yudhaislamisulistya/cicd_database_example .
+            fi
+
+            echo "Berhasil Update Repository"
+            echo "Mencoba untuk Menginstall Maven"
+            sudo apt-get update -y
+            sudo apt-get install -y maven
+            echo "Berhasil Install Maven"
+
+            cd /home/yis/sample-ci-testing
+            echo "Berhasil Masuk ke Folder sample-ci-testing"
+            echo "Mencoba untuk Test Maven"
+            mvn clean test
+            echo "Berhasil Test Maven"
