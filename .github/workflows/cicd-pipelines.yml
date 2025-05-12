@@ -41,7 +41,7 @@ jobs:
             docker cp /home/yis/academics_devel.sql mysql_prod_container:/tmp/academics_devel.sql
 
             echo "Import dump ke mysql_prod..."
-            docker exec mysql_prod_container sh -c 'mysql -u root -pTelkom123! -e "DROP DATABASE IF EXISTS academics;"'
+            docker exec mysql_prod_container sh -c 'mysql -u root -pTelkom123! -e "DROP DATABASE IF EXISTS academics; CREATE DATABASE academics;"'
             docker exec mysql_prod_container sh -c 'mysql -u root -pTelkom123! academics < /tmp/academics_devel.sql'
 
             echo "Berhasil Import Database ke mysql_prod"
