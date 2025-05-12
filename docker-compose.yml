@@ -10,7 +10,6 @@ services:
       MYSQL_DATABASE: academics_devel
     volumes:
       - mysql_data_devel:/var/lib/mysql
-      - ./mysql_conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     networks:
       - devel_network
     ports:
@@ -25,7 +24,6 @@ services:
       MYSQL_DATABASE: academics
     volumes:
       - mysql_data_prod:/var/lib/mysql
-      - ./mysql_conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     networks:
       - prod_network
     ports:
