@@ -26,12 +26,16 @@ jobs:
 
             echo "🔍 Mengecek apakah ini adalah Git repository"
             if [ -d .git ]; then
-              echo "🔄 Git repo ditemukan, menjalankan git pull..."
-              git pull
+                echo "🔄 Git repo ditemukan, menjalankan git pull..."
+                git pull
             else
-              echo "📥 Git repo tidak ditemukan, melakukan git clone..."
-              git clone https://github.com/yudhaislamisulistya/cicd_database_example . 
+                echo "📥 Git repo tidak ditemukan, melakukan git clone..."
+                git clone https://github.com/yudhaislamisulistya/cicd_database_example .
             fi
+
+            echo "📦 Menginstal Maven jika belum tersedia..."
+            sudo apt-get update -y
+            sudo apt-get install -y maven
 
             echo "🧪 Menjalankan Maven test..."
             mvn clean test
