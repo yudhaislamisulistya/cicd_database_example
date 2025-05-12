@@ -35,12 +35,12 @@ jobs:
 
             # CD (Continuous Deployment) untuk Database
             echo "DUMP Datbase dari mysql_devel..."
-            docker exec mysql_devel_container sh -c "mysqldump -uroot -pTelkom123! academics_devel > dump_new.sql"
+            docker exec mysql_devel_container mysqldump -u root -pTelkom123! --databases academics_devel > /home/yis/academics_devel.sql
 
             echo "Copy dump ke msqyl_prod..."
-            docker cp dump_new.sql mysql_prod_container:/tmp/dump_new.sql
+            docker cp /home/yis/academics_devel.sql mysql_prod_container:/tmp/academics_devel.sql
 
             echo "Import dump ke mysql_prod..."
-            docker exec mysql_prod_container sh -c "mysql -uroot -pTelkom123! academics < /tmp/dump_new.sql"
+            docker exec mysql_prod_container mysql -uroot -pTelkom123! --databases academics < /tmp/academics_devel.sql
 
             echo "Berhasil Import Database ke mysql_prod"
