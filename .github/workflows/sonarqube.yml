@@ -36,3 +36,4 @@ jobs:
             -Dsonar.organization=yudhaislamisulistya \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.branch.name=main
