@@ -41,7 +41,7 @@ jobs:
         working-directory: sample-ci-testing
         run: |
             mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=sample-ci-testing \
+            -Dsonar.projectKey=maven-sample-ci-testing \
             -Dsonar.host.url=http://202.43.248.139:9000 \
             -Dsonar.login=${{ secrets.SONAR_SERVER_TOKEN }} \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
