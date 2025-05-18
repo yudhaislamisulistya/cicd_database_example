@@ -8,4 +8,10 @@ public class App {
         }
         System.out.println("Sum of first 10 numbers is: " + sum);
     }
+
+    public void longParameterList(String a, String b, String c, String d, String e, String f, String g, String h,
+            String i, String j) {
+        System.out.println("Long parameter list: " + a + ", " + b + ", " + c + ", " + d + ", " + e + ", " + f + ", " + g
+                + ", " + h + ", " + i + ", " + j);
+    }
 }
