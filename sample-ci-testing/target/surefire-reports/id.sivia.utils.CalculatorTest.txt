@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: id.sivia.utils.CalculatorTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in id.sivia.utils.CalculatorTest
-testTambah(id.sivia.utils.CalculatorTest)  Time elapsed: 0.001 s  <<< FAILURE!
-java.lang.AssertionError: Expected 2 + 3 to equal 5
-	at id.sivia.utils.CalculatorTest.testTambah(CalculatorTest.java:11)
-
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in id.sivia.utils.CalculatorTest

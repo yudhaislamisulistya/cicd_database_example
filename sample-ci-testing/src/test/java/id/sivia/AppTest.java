@@ -15,4 +15,12 @@ public class AppTest {
     public void shouldAnswerWithTrue() {
         assertTrue(true);
     }
+
+    @Test
+    public void testMain() {
+        String[] args = {};
+        App.main(args);
+        // You can add assertions here to verify the output of the main method
+        // For example, you can check if the output contains "Hello World!"
+    }
 }
