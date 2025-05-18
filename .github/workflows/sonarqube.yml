@@ -27,13 +27,22 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+    #   - name: Build and analyze with SonarQube
+    #     working-directory: sample-ci-testing
+    #     run: |
+    #         mvn clean verify sonar:sonar \
+    #         -Dsonar.projectKey=yudhaislamisulistya_sample-ci-testing \
+    #         -Dsonar.organization=yudhaislamisulistya \
+    #         -Dsonar.host.url=https://sonarcloud.io \
+    #         -Dsonar.login=${{ secrets.SONAR_CLOUD_TOKEN }} \
+    #         -Dsonar.branch.name=main \
+    #         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
       - name: Build and analyze with SonarQube
         working-directory: sample-ci-testing
         run: |
             mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=yudhaislamisulistya_sample-ci-testing \
-            -Dsonar.organization=yudhaislamisulistya \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.branch.name=main \
+            -Dsonar.projectKey=sample-ci-testing \
+            -Dsonar.host.url=http://202.43.248.139:9000 \
+            -Dsonar.login=${{ secrets.SONAR_SERVER_TOKEN }} \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+
