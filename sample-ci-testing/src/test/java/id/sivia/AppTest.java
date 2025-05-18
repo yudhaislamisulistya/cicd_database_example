@@ -1,3 +1,5 @@
+package id.sivia;
+
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +19,7 @@ public class AppTest {
 
         System.setOut(originalOut);
 
+        // Verifikasi output
         String output = outContent.toString().trim();
         assertTrue(output.contains("Sum of first 10 numbers is: 55"));
     }

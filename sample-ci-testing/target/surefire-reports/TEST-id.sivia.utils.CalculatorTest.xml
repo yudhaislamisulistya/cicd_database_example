@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ID"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire/surefirebooter736800174573750318.jar /Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire 2025-05-19T01-00-24_205-jvmRun1 surefire91821915964071303tmp surefire_02493538526195108721tmp"/>
+    <property name="sun.java.command" value="/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire/surefirebooter10385074627113915063.jar /Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire 2025-05-19T01-29-32_051-jvmRun1 surefire5395763726320784837tmp surefire_07414733403883392815tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/test-classes:/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/classes:/Users/yudhaislamisulistya/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/yudhaislamisulistya/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire/surefirebooter736800174573750318.jar"/>
+    <property name="surefire.real.class.path" value="/Volumes/ML 1 APFS/App/CICD/cicd_database/sample-ci-testing/target/surefire/surefirebooter10385074627113915063.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.11+9"/>
