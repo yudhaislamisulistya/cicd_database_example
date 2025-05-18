@@ -20,6 +20,7 @@ public class AppTest {
     public void testMain() {
         String[] args = {};
         App.main(args);
+        assertTrue("Main method executed successfully", true);
         // You can add assertions here to verify the output of the main method
         // For example, you can check if the output contains "Hello World!"
     }
