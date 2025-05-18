@@ -33,6 +33,6 @@ jobs:
         run: |
             mvn clean verify sonar:sonar \
             -Dsonar.projectKey=sample_ci_testing \
-            -Dsonar.organization=nama_organisasi_sonarcloud \
+            -Dsonar.organization=yudhaislamisulistya \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
