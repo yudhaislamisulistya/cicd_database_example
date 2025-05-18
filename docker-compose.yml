@@ -3,7 +3,7 @@ version: '3.7'
 services:
   # Layanan MySQL untuk Development
   mysql_devel:
-    container_name: mysql_devel_container  # Tentukan nama container untuk mysql_devel
+    container_name: mysql_devel_container
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: Telkom123!
@@ -13,11 +13,11 @@ services:
     networks:
       - devel_network
     ports:
-      - "3307:3306"  # Expose port 3307 di host untuk akses development
+      - "3307:3306"
 
   # Layanan MySQL untuk Production
   mysql_prod:
-    container_name: mysql_prod_container  # Tentukan nama container untuk mysql_prod
+    container_name: mysql_prod_container
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: Telkom123!
@@ -27,14 +27,43 @@ services:
     networks:
       - prod_network
     ports:
-      - "3308:3306"  # Expose port 3308 di host untuk akses production
+      - "3308:3306"
 
-# Volume untuk menyimpan data MySQL
+  # Layanan SonarQube
+  sonarqube:
+    container_name: sonarqube_container
+    image: sonarqube:community
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_JDBC_URL=jdbc:postgresql://sonar_db:5432/sonarqube
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=Telkom123!
+    depends_on:
+      - sonar_db
+    networks:
+      - devel_network
+
+  # Database untuk SonarQube (PostgreSQL)
+  sonar_db:
+    container_name: sonarqube_db_container
+    image: postgres:13
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: Telkom123!
+      POSTGRES_DB: sonarqube
+    volumes:
+      - sonar_db_data:/var/lib/postgresql/data
+    networks:
+      - devel_network
+
+# Volume untuk MySQL dan SonarQube
 volumes:
   mysql_data_devel:
   mysql_data_prod:
+  sonar_db_data:
 
-# Jaringan untuk Development dan Production
+# Jaringan
 networks:
   devel_network:
     driver: bridge

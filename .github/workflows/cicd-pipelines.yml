@@ -24,6 +24,15 @@ jobs:
             cd /home/yis
             echo "Berhasil Masuk ke Folder YIS"
 
+            echo "Mengecek apakah ini adalah git repository"
+            if [ -d ".git" ]; then
+              echo "Ada git repository"
+              git pull origin main # Update repository ke branch main
+            else
+              echo "Gak ada git repository"
+              git clone https://github.com/yudhaislamisulistya/cicd_database_example .
+            fi
+
             docker compose up -d # Menjalankan docker compose di server
             echo "Berhasil Menjalankan Docker Compose"
 
