@@ -32,7 +32,7 @@ jobs:
         working-directory: sample-ci-testing
         run: |
             mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=sample_ci_testing \
+            -Dsonar.projectKey=yudhaislamisulistya_sample-ci-testing \
             -Dsonar.organization=yudhaislamisulistya \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
