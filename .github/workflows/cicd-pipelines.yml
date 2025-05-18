@@ -29,7 +29,7 @@ jobs:
               echo "Ada git repository"
               git pull origin main # Update repository ke branch main
             else
-              echo "Gak ada git repository"
+              echo "Gak ada git repository"a28XhyfN5y
               git clone https://github.com/yudhaislamisulistya/cicd_database_example .
             fi
 
