@@ -30,7 +30,8 @@ jobs:
 
       - name: Build and analyze with SonarQube
         working-directory: sample-ci-testing
-        run: mvn clean verify sonar:sonar \
-          -Dsonar.projectKey=sample_ci_testing \
-          -Dsonar.host.url=http://202.43.248.139:9000 \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: |
+            mvn clean verify sonar:sonar \
+            -Dsonar.projectKey=sample_ci_testing \
+            -Dsonar.host.url=http://202.43.248.139:9000 \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
