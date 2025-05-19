@@ -1,0 +1,36 @@
+name: SonarQube Code Inspection
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    name: Anaylze code with SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and analyze with SonarQube
+        working-directory: sample-ci-testing  # Masuk ke dalam folder sample-ci-testing
+        run: |
+            mvn clean verify sonar:sonar \
+            -Dsonar.projectKey=sample-ci-testing_yis \
+            -Dsonar.host.url=http://202.43.248.139:9000 \
+            -Dsonar.login=${{ secrets.SONAR_SERVER_TOKEN }} \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
