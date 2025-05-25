@@ -1,0 +1,39 @@
+name: 🚀 Continuous Deployment via git pull / clone (Appleboy)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to /home/yis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout repository (for completeness)
+        uses: actions/checkout@v4
+
+      - name: 🚀 Deploy via SSH using Appleboy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            cd /home/yis
+
+            if [ -d ".git" ]; then
+              echo "📁 Repo exists, pulling latest changes..."
+
+              # Update remote dengan token agar pull tidak butuh login
+              git remote set-url origin https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PAT }}@github.com/${{ secrets.GIT_USERNAME }}/cicd_database_example.git
+
+              git pull origin main
+            else
+              echo "📥 Cloning repo for the first time..."
+              git clone https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PAT }}@github.com/${{ secrets.GIT_USERNAME }}/cicd_database_example.git .
+            fi
+
+            echo "✅ Deployment finished at $(date)"
